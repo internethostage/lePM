@@ -15,6 +15,14 @@ get 'about' => 'home#about'
   # Example resource route (maps HTTP verbs to controller actions automatically):
 resources :projects
 
+get     "/tasks/new"      =>  "tasks#new",    as: :new_task
+post    "/tasks"          =>  "tasks#create",  as: :tasks
+get     "/tasks/:id"      =>  "tasks#show",   as: :task
+get     "/tasks"          =>  "tasks#index"
+get     "/tasks/:id/edit" =>  "tasks#edit",   as: :edit_task
+patch   "/tasks/:id"      =>  "tasks#update"
+delete  "/tasks/:id"      =>  "tasks#destroy"
+
   # Example resource route with options:
   #   resources :products do
   #     member do

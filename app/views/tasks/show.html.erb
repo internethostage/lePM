@@ -1,0 +1,8 @@
+<h1><%= @task.title %></h1>
+
+<p>Task Due Date: <%= @task.due_date.strftime('%m/%d/%Y') %></p>
+
+<p>Task Created On: <%= @task.created_at.strftime('%m/%d/%Y') %></p>
+
+<%= link_to "Edit Task", edit_task_path(@task) %>
+<%= link_to "Delete Task", task_path(@task), method: :delete, data: {confirm: "Are you sure you want to delete #{@task.title}?"} %>
