@@ -1,0 +1,12 @@
+<h1><%= @project.title %></h1>
+
+<p style="font-size:1.3em">Project Description:</p>
+<p><%= @project.description %></p>
+
+<p style="font-size:1.3em">Due Date:</p>
+<p><%= @project.due_date %></p>
+<p style="font-size:1.3em">Created On:</p>
+<p><%= @project.created_at %></p>
+
+<%= link_to "Edit", edit_project_path(@project) %>
+<%= link_to "Delete", project_path(@project), method: :delete, data: {confirm: "Are you sure you want to delete #{@project.title}?"} %>

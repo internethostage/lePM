@@ -1,0 +1,10 @@
+<h1>All Projects</h1>
+
+<% @projects.each do |project|  %>
+  <div>
+    <h2><%= link_to project.title, project_path(project) %></h2>
+    <p><span style="text-decoration: underline;">Description</span>: <%= project.description %></p>
+    <p><span style="text-decoration: underline;">Due date</span>: <%= project.due_date %></p>
+    <hr>
+  </div>
+<% end %>
