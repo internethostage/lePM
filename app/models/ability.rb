@@ -10,9 +10,9 @@ class Ability
       project.user == user && user.persisted?
     end
 
-    # can :manage, Task do |task|
-    #   (task.project.user == user || task.user == user) && user.persisted?
-    # end
+    can :manage, Task do |task|
+      (task.project.user == user || task.user == user) && user.persisted?
+    end
 
 
     #   if user.admin?

@@ -11,6 +11,8 @@ class TasksController < ApplicationController
     redirect_to project_path(@project), alert: "Access Denied" unless can? :create, @task
     @task = Task.create task_params
     @task.project = @project
+    @user = current_user
+    @task.user = @user
     if @task.save
       redirect_to project_path(@project), notice: "Task added successfully!"
     else

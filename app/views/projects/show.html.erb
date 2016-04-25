@@ -1,7 +1,7 @@
 <h1><%= @project.title %></h1>
 
 <h4>Project Owner:</h4>
-<p><%= @project.user %></p>
+<p><%= @project.user.full_name %></p>
 <h4>Project Description:</h4>
 <p><%= @project.description %></p>
 
@@ -55,10 +55,10 @@
 <% @project.tasks.where(status: false).each do |task| %>
     <p>Task: <%= task.title %></p>
     <p>Due by: <%= task.due_date.strftime('%B %d, %Y') %></p>
-    <% if can? :edit, @task %>
+    <% if can? :edit, task %>
     <%= link_to "Edit Task", edit_project_task_path(@project, task) %>
     <% end %>
-    <% if can? :destroy, @task %>
+    <% if can? :destroy, task %>
     <%= link_to "Delete Task", [@project, task], method: :delete, data: {confirm: "Are you sure?"} %>
     <% end %>
     <hr>

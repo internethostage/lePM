@@ -9,6 +9,8 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new project_params
+    @user = current_user
+    @project.user = @user
     if @project.save
       redirect_to project_path(@project), notice: "Project created successfully"
     else
