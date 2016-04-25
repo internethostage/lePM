@@ -15,7 +15,10 @@ get 'about' => 'home#about'
   # Example resource route (maps HTTP verbs to controller actions automatically):
 resources :projects do
   resources :tasks, only: [:create, :destroy, :edit, :update]
+  resources :favourites, only: [:create, :destroy]
 end
+
+get "/favourites" => "favourites#index", as: :user_favourite_projects
 
 resources :users, only: [:new, :create]
 

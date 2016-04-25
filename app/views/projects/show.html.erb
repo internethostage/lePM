@@ -1,5 +1,11 @@
 <h1><%= @project.title %></h1>
 
+<% if user_signed_in? && @project.favourited_by?(current_user) %>
+  <%= link_to "Remove Favourite", project_favourite_path(@project, @project.favourites_for(current_user)), method: :delete %>
+<% else %>
+  <%= link_to "Add to Favourites", project_favourites_path(@project), class: "icon-big", method: :post   %>
+<% end %>
+
 <h4>Project Owner:</h4>
 <p><%= @project.user.full_name %></p>
 <h4>Project Description:</h4>
