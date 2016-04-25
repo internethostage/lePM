@@ -17,6 +17,8 @@ resources :projects do
   resources :tasks, only: [:create, :destroy, :edit, :update]
 end
 
+resources :users, only: [:new, :create]
+
 # get     "/tasks/new"      =>  "tasks#new",    as: :new_task
 # post    "/tasks"          =>  "tasks#create",  as: :tasks
 # get     "/tasks/:id"      =>  "tasks#show",   as: :task
