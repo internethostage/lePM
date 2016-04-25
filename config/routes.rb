@@ -13,15 +13,17 @@ get 'about' => 'home#about'
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-resources :projects
+resources :projects do
+  resources :tasks, only: [:create, :destroy, :edit, :update]
+end
 
-get     "/tasks/new"      =>  "tasks#new",    as: :new_task
-post    "/tasks"          =>  "tasks#create",  as: :tasks
-get     "/tasks/:id"      =>  "tasks#show",   as: :task
-get     "/tasks"          =>  "tasks#index"
-get     "/tasks/:id/edit" =>  "tasks#edit",   as: :edit_task
-patch   "/tasks/:id"      =>  "tasks#update"
-delete  "/tasks/:id"      =>  "tasks#destroy"
+# get     "/tasks/new"      =>  "tasks#new",    as: :new_task
+# post    "/tasks"          =>  "tasks#create",  as: :tasks
+# get     "/tasks/:id"      =>  "tasks#show",   as: :task
+# get     "/tasks"          =>  "tasks#index"
+# get     "/tasks/:id/edit" =>  "tasks#edit",   as: :edit_task
+# patch   "/tasks/:id"      =>  "tasks#update"
+# delete  "/tasks/:id"      =>  "tasks#destroy"
 
   # Example resource route with options:
   #   resources :products do

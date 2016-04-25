@@ -6,14 +6,20 @@
   </ul>
 <% end %>
 
-<%= form_for @task do |f| %>
+<%= form_for [@project, @task] do |f| %>
   <div>
-    <%= f.label :title %>
+    <%= f.label :title, "Task:" %>
     <%= f.text_field :title %>
   </div>
   <div>
-    <%= f.label :due_date %>
+    <%= f.label :due_date, "Due Date:" %>
     <%= f.date_field :due_date %>
   </div>
-  <%= f.submit %>
+  <div>
+    <%= f.label :status, "Completed" %>
+    <%= f.check_box :status %>
+  </div>
+  <div>
+    <%= f.submit "Edit Task" %>
+  </div>
 <% end %>

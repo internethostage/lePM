@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
 
   before_action :find_task, only: [:show, :edit, :update, :destroy]
+  before_action :find_project, only: [:create, :edit, :update, :destroy]
 
   def new
     @task = Task.new
@@ -8,10 +9,11 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.create task_params
+    @task.project = @project
     if @task.save
-      redirect_to task_path(@task), notice: "Task added successfully!"
+      redirect_to project_path(@project), notice: "Task added successfully!"
     else
-      render :new
+      render "/projects/show"
     end
   end
 
@@ -27,7 +29,7 @@ class TasksController < ApplicationController
 
   def update
     if @task.update task_params
-    redirect_to task_path(@task)
+    redirect_to project_path(@project), notice: "Task Updated"
     else
       render :edit
     end
@@ -35,13 +37,17 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    reditect_to task_path
+    redirect_to project_path(@project), notice: "Task Deleted"
   end
 
 private
 
+  def find_project
+    @project = Project.find params[:project_id]
+  end
+
   def task_params
-    params.require(:task).permit(:title, :due_date)
+    params.require(:task).permit(:title, :due_date, :status)
   end
 
   def find_task
