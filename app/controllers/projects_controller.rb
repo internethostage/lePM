@@ -25,19 +25,22 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    redirect_to root_path, alert: "Access Denied" unless can? :edit, @project
   end
 
   def update
+    redirect_to root_path, alert: "Access Denied" unless can? :update, @project
     if @project.update project_params
-      redirect_to project_path(@project)
+      redirect_to project_path(@project), notice: "Project updated"
     else
       render :edit
     end
   end
 
   def destroy
+    redirect_to root_path, alert: "Access Denied" unless can? :destroy, @project
     @project.destroy
-    redirect_to projects_path
+    redirect_to projects_path, notice: "Project deleted"
   end
 
 

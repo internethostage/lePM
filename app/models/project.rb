@@ -1,5 +1,5 @@
 class Project < ActiveRecord::Base
-
+  belongs_to :user
   has_many :tasks, dependent: :destroy
 
 # This validation ensures that there is a title added and that it doesn't already exist

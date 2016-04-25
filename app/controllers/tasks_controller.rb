@@ -8,6 +8,7 @@ class TasksController < ApplicationController
   end
 
   def create
+    redirect_to project_path(@project), alert: "Access Denied" unless can? :create, @task
     @task = Task.create task_params
     @task.project = @project
     if @task.save
@@ -28,6 +29,7 @@ class TasksController < ApplicationController
   end
 
   def update
+    redirect_to project_path(@project), alert: "Access Denied" unless can? :update, @task
     if @task.update task_params
     redirect_to project_path(@project), notice: "Task Updated"
     else
@@ -36,6 +38,7 @@ class TasksController < ApplicationController
   end
 
   def destroy
+    redirect_to project_path(@project), alert: "Access Denied" unless can? :destroy, @task
     @task.destroy
     redirect_to project_path(@project), notice: "Task Deleted"
   end
