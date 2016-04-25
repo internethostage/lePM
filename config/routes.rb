@@ -19,6 +19,11 @@ end
 
 resources :users, only: [:new, :create]
 
+resources :sessions, only: [:new, :create] do
+  delete :destroy, on: :collection
+end
+
+
 # get     "/tasks/new"      =>  "tasks#new",    as: :new_task
 # post    "/tasks"          =>  "tasks#create",  as: :tasks
 # get     "/tasks/:id"      =>  "tasks#show",   as: :task
